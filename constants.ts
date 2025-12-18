@@ -10,8 +10,8 @@ const IMAGES = {
   FELIZ: getImg("Pol celtista.jpeg"),         // Foto para cuando está feliz/bici
   SONADOR: getImg("pol_lisboa.jpeg"),     // Foto soñando
   VIDENTE: getImg("pol_vidente.jpeg"),     // Foto del vidente
-  ASUSTADO: getImg("tu_foto_asustado.jpg"),   // Foto asustado/fiesta
-  ESPERANZADO: getImg("tu_foto_esperanzado.jpg"), // Foto final esperanzado
+  ASUSTADO: getImg("pol_disco.jpeg"),   // Foto asustado/fiesta
+  ESPERANZADO: getImg("pol_esperanzado.jpeg"), // Foto final esperanzado
 };
 
 export const STORY_DATA: StoryScreen[] = [
