@@ -8,8 +8,8 @@ const getImg = (filename: string) => `${import.meta.env.BASE_URL}images/${filena
 const IMAGES = {
   TRISTE: getImg("Pol triste brazos rodilla.jpeg"),       // Foto para cuando está triste
   FELIZ: getImg("Pol celtista.jpeg"),         // Foto para cuando está feliz/bici
-  SONADOR: getImg("Pol celtista.jpeg"),     // Foto soñando
-  VIDENTE: getImg("tu_foto_vidente.jpg"),     // Foto del vidente
+  SONADOR: getImg("pol_lisboa.jpeg"),     // Foto soñando
+  VIDENTE: getImg("pol_vidente.jpeg"),     // Foto del vidente
   ASUSTADO: getImg("tu_foto_asustado.jpg"),   // Foto asustado/fiesta
   ESPERANZADO: getImg("tu_foto_esperanzado.jpg"), // Foto final esperanzado
 };
