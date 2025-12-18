@@ -6,9 +6,9 @@ const getImg = (filename: string) => `${import.meta.env.BASE_URL}images/${filena
 // 📸 AQUÍ ES DONDE TIENES QUE PONER LOS NOMBRES DE TUS FOTOS
 // Asegúrate de que los archivos estén en la carpeta public/images/
 const IMAGES = {
-  TRISTE: getImg("Pol triste brazos rodilla.jpg"),       // Foto para cuando está triste
-  FELIZ: getImg("tu_foto_feliz.jpg"),         // Foto para cuando está feliz/bici
-  SONADOR: getImg("Pol celtista.jpg"),     // Foto soñando
+  TRISTE: getImg("Pol triste brazos rodilla.jpeg"),       // Foto para cuando está triste
+  FELIZ: getImg("Pol celtista.jpeg"),         // Foto para cuando está feliz/bici
+  SONADOR: getImg("Pol celtista.jpeg"),     // Foto soñando
   VIDENTE: getImg("tu_foto_vidente.jpg"),     // Foto del vidente
   ASUSTADO: getImg("tu_foto_asustado.jpg"),   // Foto asustado/fiesta
   ESPERANZADO: getImg("tu_foto_esperanzado.jpg"), // Foto final esperanzado
