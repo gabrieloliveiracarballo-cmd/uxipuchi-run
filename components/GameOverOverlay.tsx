@@ -16,7 +16,7 @@ export const GameOverOverlay: React.FC<GameOverOverlayProps> = ({ message, onRes
       className="absolute inset-0 z-50 bg-black text-white flex flex-col items-center justify-center p-8 text-center"
     >
       <h2 className="text-3xl mb-6 font-bold">{message}</h2>
-      <Button variant="ghost" className="bg-white text-black border-white hover:bg-gray-200" onClick={onRestart}>
+      <Button variant="primary" className="bg-white text-black border-white hover:bg-gray-200" onClick={onRestart}>
         Reiniciar
       </Button>
     </motion.div>

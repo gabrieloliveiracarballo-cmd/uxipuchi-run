@@ -26,15 +26,15 @@ export const StoryRevealSlide: React.FC<StoryRevealSlideProps> = ({ data, onNext
   };
 
   return (
-    <div 
+    <div
       onClick={handleTap}
       className="flex flex-col h-full w-full p-6 cursor-pointer relative"
     >
       {/* Header/Title */}
       {data.title && (
-         <h3 className="text-xl font-bold text-gray-400 uppercase tracking-widest text-center mb-4">
-           {data.title}
-         </h3>
+        <h3 className="text-xl font-bold text-gray-400 uppercase tracking-widest text-center mb-4">
+          {data.title}
+        </h3>
       )}
 
       {/* Image Area - Static at top */}
@@ -45,11 +45,11 @@ export const StoryRevealSlide: React.FC<StoryRevealSlideProps> = ({ data, onNext
         transition={{ duration: 0.8 }}
         className="w-full aspect-square mb-6 border-4 border-black rounded-lg overflow-hidden bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
       >
-         <img 
-            src={data.imageSrc} 
-            alt={data.imageAlt} 
-            className="w-full h-full object-cover grayscale contrast-125"
-          />
+        <img
+          src={data.imageSrc}
+          alt={data.imageAlt}
+          className="w-full h-full object-cover grayscale contrast-125"
+        />
       </motion.div>
 
       {/* Dynamic Text Area */}
@@ -71,12 +71,22 @@ export const StoryRevealSlide: React.FC<StoryRevealSlideProps> = ({ data, onNext
 
       {/* Hint for user if nothing is revealed yet */}
       {revealedIndex === -1 && (
-        <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.5 }}
-            className="absolute bottom-8 left-0 right-0 text-center text-sm text-gray-400 animate-pulse"
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: [0, 10, 0] }}
+          transition={{
+            opacity: { duration: 0.5 },
+            y: { repeat: Infinity, duration: 1.5, ease: "easeInOut" }
+          }}
+          className="flex flex-col items-center gap-2 mt-2 text-sketch-black font-bold"
         >
-            (Toca la pantalla)
+          <span className="text-xl">(Toca la pantalla)</span>
+          <motion.div
+            animate={{ y: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 1 }}
+          >
+            <ArrowRight className="rotate-90" size={32} />
+          </motion.div>
         </motion.div>
       )}
 
