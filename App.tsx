@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Layout } from './components/Layout';
 import { DecisionSlide } from './components/slides/DecisionSlide';
 import { StoryRevealSlide } from './components/slides/StoryRevealSlide';
-import { InputSlide } from './components/slides/InputSlide';
-import { GameOverOverlay } from './components/GameOverOverlay';
+import { QuizSlide } from './components/slides/QuizSlide';
+import { CelebrationSlide } from './components/slides/CelebrationSlide';
+import { Toast } from './components/ui/Toast';
 import { STORY_DATA } from './constants';
 import { ScreenType } from './types';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const App: React.FC = () => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
-  const [gameOverMessage, setGameOverMessage] = useState('');
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const currentSlideData = STORY_DATA[currentStepIndex];
 
@@ -21,17 +21,14 @@ const App: React.FC = () => {
     }
   };
 
-  const handleGameOver = () => {
-    setGameOverMessage(currentSlideData.badOutcomeText || "Game Over");
-    setGameOver(true);
+  const showToast = useCallback((message: string) => {
+    setToastMessage(message);
+  }, []);
+
+  const handleBadChoice = () => {
+    showToast(currentSlideData.badOutcomeText || "¡Piénsalo bien!");
   };
 
-  const handleRestart = () => {
-    setGameOver(false);
-    setCurrentStepIndex(0);
-  };
-
-  // Render logic based on slide type
   const renderSlide = () => {
     switch (currentSlideData.type) {
       case ScreenType.INTRO_DECISION:
@@ -40,7 +37,7 @@ const App: React.FC = () => {
           <DecisionSlide
             data={currentSlideData}
             onGoodChoice={handleNext}
-            onBadChoice={handleGameOver}
+            onBadChoice={handleBadChoice}
           />
         );
       case ScreenType.STORY_REVEAL:
@@ -50,9 +47,19 @@ const App: React.FC = () => {
             onNext={handleNext}
           />
         );
-      case ScreenType.INPUT:
+      case ScreenType.QUIZ:
         return (
-          <InputSlide data={currentSlideData} />
+          <QuizSlide
+            data={currentSlideData}
+            onCorrect={handleNext}
+            onWrongAnswer={showToast}
+          />
+        );
+      case ScreenType.CELEBRATION:
+        return (
+          <CelebrationSlide
+            data={currentSlideData}
+          />
         );
       default:
         return <div>Unknown slide type</div>;
@@ -62,23 +69,25 @@ const App: React.FC = () => {
   return (
     <Layout>
       <AnimatePresence mode="wait">
-        {gameOver ? (
-          <GameOverOverlay 
-            key="game-over"
-            message={gameOverMessage} 
-            onRestart={handleRestart} 
+        <motion.div
+          key={currentStepIndex}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="h-full w-full"
+        >
+          {renderSlide()}
+        </motion.div>
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {toastMessage && (
+          <Toast
+            key="toast"
+            message={toastMessage}
+            onClose={() => setToastMessage(null)}
           />
-        ) : (
-          <motion.div
-            key={currentStepIndex}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="h-full w-full"
-          >
-            {renderSlide()}
-          </motion.div>
         )}
       </AnimatePresence>
     </Layout>

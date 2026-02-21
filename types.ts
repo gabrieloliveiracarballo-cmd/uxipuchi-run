@@ -2,16 +2,17 @@ export enum ScreenType {
   INTRO_DECISION = 'INTRO_DECISION',
   STORY_REVEAL = 'STORY_REVEAL',
   CLIMAX_DECISION = 'CLIMAX_DECISION',
-  INPUT = 'INPUT'
+  QUIZ = 'QUIZ',
+  CELEBRATION = 'CELEBRATION'
 }
 
 export interface StoryScreen {
   id: number;
   type: ScreenType;
-  imageSrc: string; // Placeholder or path
+  imageSrc: string;
   imageAlt: string;
   title?: string;
-  
+
   // For STORY_REVEAL
   lines?: string[];
   nextButtonText?: string;
@@ -20,14 +21,12 @@ export interface StoryScreen {
   initialText?: string;
   badButtonText?: string;
   goodButtonText?: string;
-  badOutcomeText?: string; // Text shown on overlay
+  badOutcomeText?: string;
 
-  // For INPUT
-  placeholder?: string;
-  submitButtonText?: string;
-}
+  // For QUIZ
+  quizQuestion?: string;
+  quizOptions?: { label: string; correct: boolean; alertText?: string }[];
 
-export interface SubmissionData {
-  instagramHandle: string;
-  timestamp: string;
+  // For CELEBRATION
+  celebrationText?: string;
 }

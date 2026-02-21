@@ -1,101 +1,96 @@
 import { ScreenType, StoryScreen } from './types';
 
-// Helper para obtener la ruta correcta de las imágenes (funciona en local y GitHub Pages)
 const getImg = (filename: string) => `${import.meta.env.BASE_URL}images/${filename}`;
 
-// 📸 AQUÍ ES DONDE TIENES QUE PONER LOS NOMBRES DE TUS FOTOS
-// Asegúrate de que los archivos estén en la carpeta public/images/
 const IMAGES = {
-  TRISTE: getImg("Pol triste brazos rodilla.jpeg"),       // Foto para cuando está triste
-  FELIZ: getImg("Pol celtista.jpeg"),         // Foto para cuando está feliz/bici
-  SONADOR: getImg("pol_lisboa.jpeg"),     // Foto soñando
-  VIDENTE: getImg("pol_vidente.jpeg"),     // Foto del vidente
-  ASUSTADO: getImg("pol_disco.jpeg"),   // Foto asustado/fiesta
-  ESPERANZADO: getImg("pol_esperanzado.jpeg"), // Foto final esperanzado
+  CHICA_PENSANDO: getImg("img1.png"),
+  OCEJO_LIGANDO: getImg("img2.png"),
+  OCEJO_LLORANDO: getImg("img3.png"),
+  OCEJO_CORRIENDO: getImg("img4.png"),
+  EJERCICIO_CONTA: getImg("img5.png"),
+  OCEJO_UXIA_FELICES: getImg("img6.png"),
 };
 
 export const STORY_DATA: StoryScreen[] = [
   {
     id: 1,
     type: ScreenType.INTRO_DECISION,
-    imageSrc: IMAGES.TRISTE,
-    imageAlt: "Pol triste",
-    initialText: "Este es pol y, como ves, está muy triste.",
-    badButtonText: "Mátalo",
-    goodButtonText: "Quiero ayudarlo",
-    badOutcomeText: "Has perdido una gran oportunidad. Gracias."
+    imageSrc: IMAGES.CHICA_PENSANDO,
+    imageAlt: "Chica pensando",
+    initialText: "Uxía, ¿te gustaría aprobar contabilidad?",
+    goodButtonText: "Sí, enséñame",
+    badButtonText: "No, fracaso escolar",
+    badOutcomeText: "¡Piénsalo bien!",
   },
   {
     id: 2,
     type: ScreenType.STORY_REVEAL,
-    imageSrc: IMAGES.FELIZ,
-    imageAlt: "Pol feliz con su bici",
-    title: "¿Quién es pol?",
+    imageSrc: IMAGES.OCEJO_LIGANDO,
+    imageAlt: "Ocejo ligando feliz",
     lines: [
-      "pol es un chico de Bueu, muy majo.",
-      "Le gusta el ciclismo...",
-      "...el Celta de Vigo...",
-      "...y pasar tiempo con sus amigos."
+      "Un genio de la contabilidad un día dijo",
+      "Es mejor hablar tras pensar",
+      "que pensar antes de hablar",
     ],
-    nextButtonText: "¿Y qué le pasó?"
+    nextButtonText: "Siguiente",
   },
   {
     id: 3,
     type: ScreenType.STORY_REVEAL,
-    imageSrc: IMAGES.SONADOR,
-    imageAlt: "Pol soñando",
-    title: "Los Sueños",
+    imageSrc: IMAGES.OCEJO_LLORANDO,
+    imageAlt: "Ocejo llorando, chica con desprecio",
     lines: [
-      "Siempre fue un chico muy alegre y soñador.",
-      "Su sueño era emprender, tener una familia y vivir en Lisboa.",
-      "Pero un día... todo cambió para él."
+      "la chica ante semejante estupidez, se fue",
+      "ese día Ocejo aprendió que debía cambiar su vida",
+      "y empezó un reto",
     ],
-    nextButtonText: "¿Qué pasó entonces?"
+    nextButtonText: "Siguiente",
   },
   {
     id: 4,
     type: ScreenType.STORY_REVEAL,
-    imageSrc: IMAGES.VIDENTE,
-    imageAlt: "El vidente Pedro",
-    title: "El Vidente",
+    imageSrc: IMAGES.OCEJO_CORRIENDO,
+    imageAlt: "Ocejo corriendo en Samil",
     lines: [
-      "Un día visitó al vidente Pedro.",
-      "pol le preguntó por la mujer de sus sueños.",
-      "Pedro dijo que la vería bailando en la discoteca."
+      "Ocejo decidió que si quería a Conchi",
+      "tenía que correr",
+      "correr una carrera en particular",
     ],
-    nextButtonText: "..."
+    nextButtonText: "Siguiente",
   },
   {
     id: 5,
-    type: ScreenType.STORY_REVEAL,
-    imageSrc: IMAGES.ASUSTADO,
-    imageAlt: "Pol asustado en la fiesta",
-    title: "El Miedo",
-    lines: [
-      "pol la vio...",
-      "...pero por miedo al rechazo, no le habló."
+    type: ScreenType.QUIZ,
+    imageSrc: IMAGES.EJERCICIO_CONTA,
+    imageAlt: "Ejercicio de contabilidad",
+    quizQuestion: "Antes de acabar la historia, la cuenta 429 a donde va?",
+    quizOptions: [
+      {
+        label: "Debe",
+        correct: false,
+        alertText: "¡Error! Vuelve a intentarlo, casi suspendes.",
+      },
+      {
+        label: "Haber",
+        correct: true,
+      },
     ],
-    nextButtonText: "Siguiente"
   },
   {
     id: 6,
     type: ScreenType.CLIMAX_DECISION,
-    imageSrc: IMAGES.TRISTE,
-    imageAlt: "Pol triste de nuevo",
-    title: "El Clímax",
-    initialText: "Desde entonces, pol anda apenado. Solo tú puedes salvarlo.",
-    badButtonText: "Lo mato",
-    goodButtonText: "Lo salvo",
-    badOutcomeText: "Has decidido acabar con la historia. Pol nunca será feliz."
+    imageSrc: IMAGES.OCEJO_UXIA_FELICES,
+    imageAlt: "Ocejo y Uxía felices",
+    initialText: "Así que Uxía,\nSi tú quieres aprobar conta\nEl 12 de abril deberás correr\nLa mini bay. ¿Aceptas el reto?",
+    goodButtonText: "Sí",
+    badButtonText: "No, fracaso escolar",
+    badOutcomeText: "¡Piénsalo bien!",
   },
   {
     id: 7,
-    type: ScreenType.INPUT,
-    imageSrc: IMAGES.ESPERANZADO,
-    imageAlt: "Pol esperanzado",
-    title: "Desenlace",
-    initialText: "pol necesita tu Instagram para volver a ser feliz.",
-    placeholder: "@tu_instagram",
-    submitButtonText: "Salvar a pol"
-  }
+    type: ScreenType.CELEBRATION,
+    imageSrc: "",
+    imageAlt: "",
+    celebrationText: "¡Nos vemos en La Mini Bay el 12 de abril!",
+  },
 ];

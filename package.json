@@ -1,12 +1,12 @@
 {
-  "name": "la-historia-de-pol",
+  "name": "uxipuchi-run",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:github": "cross-env VITE_BASE_PATH=/web-app-pol/ vite build",
+    "build:github": "cross-env VITE_BASE_PATH=/uxipuchi-run/ vite build",
     "build:cloudflare": "vite build",
     "preview": "vite preview"
   },

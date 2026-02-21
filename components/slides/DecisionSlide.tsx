@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { StoryScreen } from '../../types';
+import { ScreenType, StoryScreen } from '../../types';
 import { Button } from '../ui/Button';
-import { Skull, Heart, ShieldAlert, ShieldCheck } from 'lucide-react';
+import { Skull, Heart, ShieldCheck } from 'lucide-react';
 
 interface DecisionSlideProps {
   data: StoryScreen;
@@ -43,7 +43,7 @@ export const DecisionSlide: React.FC<DecisionSlideProps> = ({ data, onGoodChoice
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-2xl text-center font-bold text-sketch-black"
+          className="text-2xl text-center font-bold text-sketch-black whitespace-pre-line"
         >
           {data.initialText}
         </motion.p>
@@ -80,7 +80,7 @@ export const DecisionSlide: React.FC<DecisionSlideProps> = ({ data, onGoodChoice
                 onClick={onGoodChoice}
                 className="w-full h-full rounded-xl flex flex-col items-center justify-center gap-4 text-2xl py-8"
               >
-                {data.id === 6 ? <ShieldCheck size={48} /> : <Heart size={48} />}
+                {data.type === ScreenType.CLIMAX_DECISION ? <ShieldCheck size={48} /> : <Heart size={48} />}
                 {data.goodButtonText}
               </Button>
             </motion.div>
